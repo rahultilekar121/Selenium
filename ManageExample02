@@ -1,0 +1,49 @@
+package demo;
+
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ManageExample02 {
+	static WebDriver driver;
+
+	public static void launchbrowser() {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\DELL\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		driver = new ChromeDriver();
+	}
+
+	public static void openApplication(String String) {
+		driver.get(String);
+		return;
+	}
+
+	public static void manage() {
+		System.out.println("Before size=" + driver.manage().window().getSize());
+		driver.manage().window().maximize();
+		//driver.manage().window().fullscreen();
+		Dimension dim = new Dimension(600, 600);
+		driver.manage().window().setSize(dim);
+		System.out.println("After size=" + driver.manage().window().getSize());
+
+	}
+
+	public static void manage2() {
+		System.out.println("Before Position=" + driver.manage().window().getPosition());
+		Point point = new Point(700,600);
+		driver.manage().window().setPosition(point);
+		System.out.println("After Position=" + driver.manage().window().getPosition());
+
+	}
+
+	public static void main(String[] args) {
+		launchbrowser();
+		openApplication("https://www.google.com/");
+		openApplication("https://web.whatsapp.com/");
+
+		manage();
+		manage2();
+	}
+
+}
