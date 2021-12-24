@@ -1,0 +1,36 @@
+package demo;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.ClickAction;
+
+public class Eaxmple02 {
+	static WebDriver driver;
+
+	public static void launchbrowser() {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\DELL\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		driver = new ChromeDriver();
+
+	}
+
+	public static void openApplication() {
+		driver.get("https://www.google.co.in/");
+
+	}
+
+	public static void handleWebElement() {
+
+		driver.findElement(By.name("q")).sendKeys("Rahul Tilekar");// method first
+		// .findElement(By.name("btnK")).click();
+		driver.findElement(By.name("btnK")).submit();
+	}
+
+	public static void main(String[] args) {
+		launchbrowser();
+		openApplication();
+		handleWebElement();
+	}
+}
