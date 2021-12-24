@@ -1,0 +1,71 @@
+package demo;
+
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ManageEaxmple {
+
+	static WebDriver driver;
+
+	public static void launchbrowser() {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\DELL\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		driver = new ChromeDriver();
+
+	}
+
+	public static void openApplication() {
+		driver.get("https://www.google.com/");
+	}
+
+	public static void gettitle() {
+
+		String ActualString = driver.getTitle();
+		String expectedString = "naukri.com";
+		if (ActualString.equals(expectedString))
+			System.out.println("Same Title");
+		else
+			System.err.println("Different Title [Actual Title is " + ActualString + ".]");
+	}
+
+	public static String gettitle1() {
+		String title = driver.getTitle();
+		return title;
+
+	}
+
+	public static void closebrowser() {
+		driver.close();
+	}
+
+	public static void manage() {
+
+		// driver.manage().window().maximize();
+		// driver.manage().window().fullscreen();
+		System.out.println("Brfore max= " + driver.manage().window().getSize());
+		Dimension dim = new Dimension(500, 600);
+		driver.manage().window().setSize(dim);
+
+		System.out.println("After max= " + driver.manage().window().getSize());
+		System.out.println("Cookies= " + driver.manage().getCookies());
+		driver.manage().deleteAllCookies();
+		System.out.println("Cookies after delete = " + driver.manage().getCookies());
+
+		// Cookie cookie=new Cookie("Cookie
+		// "NID=511=Idtz7IQk8lty9b3gCOw_rgVeLQLKNiVklKRxaJcvVIzSK_xf7zRBPCR8qZBYFC3rpgNFdntZSJ5C27RBzhFkB8Y1P_JAR=2021-12-04-04;
+		// expires=Mon, 03 Jan 2022 10:22:30 LINT; path=/; domain=.google.com;secure;");
+		// Syntax of implicitlywait
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+	}
+
+	public static void main(String[] args) {
+		launchbrowser();
+		openApplication();
+		System.out.println("Title=" + gettitle1());
+		manage();
+
+	}
+
+}
