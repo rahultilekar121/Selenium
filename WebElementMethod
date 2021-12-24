@@ -1,0 +1,116 @@
+package demo;
+
+import java.lang.management.ThreadInfo;
+import java.util.concurrent.TimeUnit;
+
+import javax.servlet.http.Cookie;
+
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.server.handler.SetWindowSize;
+
+public class Example {
+	static WebDriver driver;
+
+	public static void launchbrowser() {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\DELL\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		driver = new ChromeDriver();
+
+	}
+
+	public static void openApplication() {
+		driver.get("https://www.google.com/");
+	}
+
+	public static void gettitle() {
+		String ActualString = driver.getTitle();
+		String expectedString = "naukri.com";
+		if (ActualString.equals(expectedString))
+			System.out.println("Same Title");
+		else
+			System.err.println("Different Title [Actual Title is " + ActualString + ".]");
+	}
+
+	public static void closebrowser() {
+		driver.close();
+	}
+
+	public static void Filpkart() {
+		driver.get("https://www.google.com/");
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void CurrentUrl() {
+		System.out.println("Current Url=" + driver.getCurrentUrl());
+	}
+
+	public static void PageSours() {
+		String s = driver.getPageSource();
+		System.out.println("PageSours=" + s);
+	}
+
+	public static void NavigationOPback() {
+		driver.navigate().back();
+	}
+
+	public static void NavigationOPforward() {
+		driver.navigate().forward();
+	}
+
+	public static void NavigationOPrefresh() {
+		driver.navigate().refresh();
+	}
+
+	public static void NavigationOPto() {
+		// driver.navigate().to("https://www.flipkart.com/motorola-g60-dynamic-gray-128-gb/p/itmf1d5d2978289e?pid=MOBFWSF8U37QFQGK&lid=LSTMOBFWSF8U37QFQGKBPO1B1&marketplace=FLIPKART&q=moto+g60+mobile+phone+4+64&store=tyy%2F4io&srno=s_1_1&otracker=AS_Query_OrganicAutoSuggest_4_21_na_na_ps&otracker1=AS_Query_OrganicAutoSuggest_4_21_na_na_ps&fm=SEARCH&iid=a487f45a-da23-4fd2-9adc-b859d11ee1d5.MOBFWSF8U37QFQGK.SEARCH&ppt=sp&ppn=sp&ssid=lbkcimnsmo0000001638087685517&qH=db11d129ce16ef19");
+	}
+
+	public static void manage() {
+
+		// driver.manage().window().maximize();
+		// driver.manage().window().fullscreen();
+		System.out.println("Before max= " + driver.manage().window().getSize());
+		Dimension dim = new Dimension(500, 600);
+		driver.manage().window().setSize(dim);
+		System.out.println("After max= " + driver.manage().window().getSize());
+		System.out.println("Cookies= " + driver.manage().getCookies());
+		driver.manage().deleteAllCookies();
+		System.out.println("Cookies after delete = " + driver.manage().getCookies());
+
+		// Cookie cookie=new Cookie("Cookie
+		// "NID=511=Idtz7IQk8lty9b3gCOw_rgVeLQLKNiVklKRxaJcvVIzSK_xf7zRBPCR8qZBYFC3rpgNFdntZSJ5C27RBzhFkB8Y1P_JAR=2021-12-04-04;
+		// expires=Mon, 03 Jan 2022 10:22:30 LINT; path=/; domain=.google.com;secure;");
+		// Syntax of implicitlywait
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+	}
+
+	private static char[] SetSize(Dimension dim) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static void main(String[] args) {
+		launchbrowser();
+		openApplication();
+		gettitle();
+		CurrentUrl();// google
+		// Filpkart();
+		// NavigationOPback();
+		// NavigationOPforward();
+		// NavigationOPrefresh();
+		// closebrowser();
+		// NavigationOPto();
+		// PageSours();
+		manage();
+
+	}
+
+}
