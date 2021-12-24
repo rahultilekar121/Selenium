@@ -1,0 +1,63 @@
+package demo;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class WindowHandles {
+	static WebDriver driver;
+
+	public static void launchbrowser() {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\DELL\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		driver = new ChromeDriver();
+
+	}
+
+	public static void openApplication(String str) {
+		// driver.get("https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F");
+		// driver.get("file:///C:/Users/DELL/Desktop/loginpage.html");
+		driver.get(str);
+		
+	}
+
+	public static void getwindowhandle() {
+		System.out.println("Title=" + driver.getTitle());
+		System.out.println("Url=" + driver.getCurrentUrl());
+
+		String handle = driver.getWindowHandle();
+		System.out.println("handle=" + handle);
+
+		Set<String> handles = driver.getWindowHandles();
+		System.out.println(handles);
+		Iterator<String> itr = handles.iterator();
+		while (itr.hasNext()) {
+
+			// System.out.println(itr.next());
+			driver.switchTo().window(itr.next());
+			
+			/*System.out.println("Title=" + driver.getTitle());
+			System.out.println("Url=" + driver.getCurrentUrl());*/
+			if(driver.getTitle().equals("Tech Mahindra")) {
+			System.out.println("Url="+driver.getCurrentUrl());
+			driver.manage().window().maximize();
+			boolean display =driver.findElement(By.xpath("//img[@alt='Tech Mahindra']")).isDisplayed();
+			System.out.println(display);
+			break;
+		}
+		}
+	}
+
+	public static void main(String[] args) {
+		launchbrowser();
+		openApplication("https://www.naukri.com/");
+		getwindowhandle();
+		// driver.quit();
+	}
+
+}
