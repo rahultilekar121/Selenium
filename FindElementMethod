@@ -1,0 +1,43 @@
+package demo;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class FindElementMethod {
+	static WebDriver driver;
+
+	public static void launchbrowser() {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\DELL\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		driver = new ChromeDriver();
+
+	}
+
+	public static void openApplication(String string) {
+		// driver.get("file:///C:/Users/DELL/Desktop/loginpage.html");
+		driver.get(string);
+		return;
+	}
+
+	public static void handleWebElement() {
+		WebElement usernamelbl = driver.findElement(By.name("Username"));
+		System.out.println();
+		String usernameTxt = usernamelbl.getText();
+		System.out.println("S=" + usernameTxt);
+		// driver.findElement(By.id("123")).sendKeys("Rahul Tilekar");//method first
+		driver.findElement(By.tagName("input")).sendKeys("Rahul Tilekar");// method second
+		driver.findElement(By.id("456")).sendKeys("Rahul2195");
+		driver.findElement(By.name("submit")).click();
+
+	}
+
+	public static void main(String[] args) {
+		launchbrowser();
+		openApplication("file:///C:/Users/DELL/Desktop/loginpage.html");
+		handleWebElement();
+
+	}
+
+}
