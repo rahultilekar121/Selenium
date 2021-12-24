@@ -1,0 +1,52 @@
+package demo;
+
+import java.util.List;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class FindElementsMethod {
+	static WebDriver driver;
+
+	public static void launchbrowser() {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\DELL\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		driver = new ChromeDriver();
+
+	}
+
+	public static void openApplication() {
+		// driver.get("https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F");
+		driver.get("file:///C:/Users/DELL/Desktop/loginpage.html");
+	}
+
+	public static void getElement() {
+		List<WebElement> inputfield = driver.findElements(By.tagName("input"));
+		System.out.println("size=" + inputfield.size());
+		String[] field = { "Rahul", "rahu2195", "yes" };
+		for (int i = 0; i < 3; i++) {
+			// inputfield.get(i).sendKeys("java");
+			inputfield.get(i).sendKeys(field[i]);
+
+		}
+		// inputfield.get(0).sendKeys("R121"); //using this method we directly put value
+		// in given location without using for loop
+	}
+
+	public static void getwindowhandle() {
+		String handle = driver.getWindowHandle();
+		System.out.println("handle=" + handle);
+
+	}
+
+	public static void main(String[] args) {
+		launchbrowser();
+		openApplication();
+		getElement();
+		getwindowhandle();
+	}
+
+}
